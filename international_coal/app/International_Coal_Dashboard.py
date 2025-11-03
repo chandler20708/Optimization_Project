@@ -3,7 +3,7 @@ import plotly.express as px
 import gurobipy as gp
 from gurobipy import GRB
 import polars as pl
-from models import run_model#, explain_model_results
+from models import run_model #, explain_model_results
 from datetime import datetime
 
 months = ["June", "July", "August", "September", "October"]
@@ -301,3 +301,14 @@ def dashboard():
 if __name__ == "__main__":
   st.set_page_config(layout="wide")
   dashboard()
+  st.markdown("---")
+  st.markdown(
+      """
+      <div style='text-align: center; font-size: 0.9em; color: gray;'>
+          © 2025 <b>Chandler Liu</b>. All rights reserved.  
+          Made with ❤️ using Streamlit.  
+          <a href='https://www.linkedin.com/in/chia-te-liu/' target='_blank'>LinkedIn</a>
+      </div>
+      """,
+      unsafe_allow_html=True
+  )
