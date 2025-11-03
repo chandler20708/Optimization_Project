@@ -6,8 +6,6 @@ import polars as pl
 from models import run_model, explain_model_results
 from datetime import datetime
 
-# 3. provide parameters to the function that's running the model where I can filter the most important featuress from the full sensitivity report
-
 months = ["June", "July", "August", "September", "October"]
 bands = ["WE_offpeak", "WE_peak", "WD_offpeak", "WD_peak"]
 fuels = ["Stockpile", "Columbian","Russian", "Scottish", "Biomass"]
@@ -228,13 +226,6 @@ def dashboard():
       .update_layout(yaxis_title=None, xaxis_title=None, showlegend=False, title="Stockpile Usage", yaxis={'showticklabels': False})
     )
     st.plotly_chart(stockpile_bar)
-    # st.markdown("Utilisation Rate: ...to be implemented")
-
-  # with energy_section:
-  #   bar_chart = px.bar(
-  #     energy_mb, x="Period", y="Energy Generated", facet_col="Month"
-  #   )
-  #   st.plotly_chart(bar_chart)
 
   with fuel_strat_section:
     st.markdown("## Fuel Strategy (tons)")
@@ -242,7 +233,6 @@ def dashboard():
       fuel_strat_df, x="Period", y=fuels, facet_col="Month"
     )
     st.plotly_chart(bar_chart)
-    # st.dataframe(fuel_strat_df.select(pl.all().exclude("month_index")), height=740)
 
     st.markdown("### Sensitivity Analysis")
     var_col, constr_col = st.columns([2,1.5])
@@ -289,22 +279,6 @@ def dashboard():
           pl.col("Constraint").filter(pl.col("Pi (Dual Value)")>0).alias("active_members")
         )
         .sort("avg_pi", descending=True)
-        # .with_columns(parts=pl.col("Constraint").str.extract("\[(.*?)\]",1))
-        # .with_columns(
-        #   pl.col("parts").str.split(',').list.get(0).alias("p0"),
-        #   pl.col("parts").str.split(',').list.get(1).alias("p1"),
-        #   pl.col("parts").str.split(',').list.get(-1).alias("p2")
-        # )
-        # # .with_columns(
-        #   # pl.when((temp := pl.col("parts").str.split(',').list.get(-1))==pl.col("p1")).then(None).otherwise(temp).alias("p2"),
-        # # )
-        # .with_columns(
-        #   "Constraint",
-        #   pl.when(pl.col("p0").is_in(months)).then(None).otherwise(pl.col("p0")).alias("fuel"),
-        #   pl.when(pl.col("p0").is_in(months)).then(pl.col("p0")).otherwise(pl.col("p1")).alias("month"),
-        #   pl.when(pl.col("p0").is_in(months)).then(pl.col("p1")).otherwise(pl.col("p2")).alias("band")
-        # )
-
         .collect()
       )
       st.text("""

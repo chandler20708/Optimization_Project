@@ -215,24 +215,7 @@ def run_model(
       .when(pl.col("Month") == "October").then(10)
     )
     .sort(["month_index", "Period"])
-    # .select(pl.all().exclude("month_index"))
   )
-
-  # energy_mb_df = (
-  #   pl.DataFrame({
-  #     "Month": [m for m in months for b in bands],
-  #     "Period": [b for m in months for b in bands],
-  #     "Energy Generated": [energy_mb[m,b].getValue() for m in months for b in bands]
-  #   })
-  #   .with_columns(
-  #     month_index = pl.when(pl.col("Month") == "June").then(6)
-  #     .when(pl.col("Month") == "July").then(7)
-  #     .when(pl.col("Month") == "August").then(8)
-  #     .when(pl.col("Month") == "September").then(9)
-  #     .when(pl.col("Month") == "October").then(10)
-  #   )
-  #   .sort(["month_index", "Period"])
-  # )
 
   sensitivity_var = {
     "Variable": [],
@@ -326,7 +309,6 @@ def run_model(
       .alias("variable_status")
     )
     .with_columns(pl.col("*").exclude('Variable', 'Binding', 'variable_status').round(5))
-
     .filter(filter_expr)
   )
 
@@ -352,11 +334,6 @@ def run_model(
       # sum marginal gains, average π, list months/bands.
     )
     .sort("total_margin_profit_gain", descending=True)
-    # .filter(
-    #   pl.col('Final Value').eq(0)
-    #   .and_(pl.col('RC').lt(0))
-    #   .and_(pl.col('Pi (Dual Value)').ne(0))) # by x=0, rc < 0, and filter pi != 0
-    # # .filter(filter_expr）
   )
 
   sensitivity_map_buffer_lf = (
