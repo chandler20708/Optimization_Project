@@ -305,7 +305,7 @@ if __name__ == "__main__":
   st.markdown(
       """
       <div style='text-align: center; font-size: 0.9em; color: gray;'>
-          © 2025 <b>Chandler Liu</b>. All rights reserved.  
+          © 2025 <b>Chia-Te Liu</b>. All rights reserved.  
           Made with ❤️ using Streamlit.  
           <a href='https://www.linkedin.com/in/chia-te-liu/' target='_blank'>LinkedIn</a>
       </div>
