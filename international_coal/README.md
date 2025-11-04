@@ -33,13 +33,15 @@ The optimization model determines the **optimal fuel mix** (coal, biomass, stock
 
 ---
 
-## 🧮 Model Highlights
+## ⚙️ Model Constraints
 
-| Category | Description |
-|-----------|--------------|
-| **Decision Variables** | `x[fuel, month, band]`: tons burned per fuel/month/band; binary FGD investment variable |
-| **Objective** | ![Objective Function](https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Cmax%20Z%20%3D%20%5Csum_%7Bm%20%5Cin%20Months%7D%20%5Csum_%7Bb%20%5Cin%20Bands%7D%20%5CBigg%5B%28price_%7Bm%2Cb%7D-0.65%29%5Ccdot%20energy_%7Bm%2Cb%7D%2BROC%5Ccdot%20energy_%7BBiomass%2Cm%2Cb%7D-%5Csum_%7Bf%20%5Cin%20Fuels%7Dfuel%5C_cost_f%5Ccdot%20x_%7Bf%2Cm%2Cb%7D-CO2%5C_price%5Ccdot%20exchange%5C_rate%5Ccdot0.8%5Ccdot%20energy_%7Bm%2Cb%7D-SO2%5C_reduced_%7Bm%2Cb%7D%5Ccdot%20SO2%5C_price%5CBigg%5D-FGD%5C_cost) |
-| **Constraints** | Energy balance, capacity, biomass ≤ 10%, SO₂ bubble, FGD efficiency, and emission limits |
+| Constraint | Description | Equation |
+|-------------|--------------|-----------|
+| **Stockpile Inventory** | Total stockpile usage across all months and bands must not exceed 600,000 tons. | ![Stockpile](https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Csum_%7Bm%2Cb%7D%20x_%7BStockpile%2C%20m%2C%20b%7D%20%5Cleq%20600%2C000) |
+| **Biomass Limit** | Biomass generation is limited to a percentage of total energy generation. | ![Biomass](https://latex.codecogs.com/png.latex?%5Cbg_white%20energy_%7BBiomass%2C%20m%2C%20b%7D%20%5Cleq%20%5Ctext%7Bbiomass%5C_limit%7D%20%5Ctimes%20energy_%7Bm%2C%20b%7D%2C%20%5Cquad%20%5Cforall%20m%2Cb) |
+| **Sulphur Bubble Limit** | Total SO₂ removed across all periods must not exceed the bubble cap. | ![SO2](https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Csum_%7Bm%2Cb%7D%20SO2%5C_reduced_%7Bm%2Cb%7D%20%5Cleq%20SO2%5C_bubble%5C_limit) |
+| **Capacity Limit** | Generation per period is limited by plant capacity and available hours. | ![Capacity](https://latex.codecogs.com/png.latex?%5Cbg_white%20energy_%7Bm%2C%20b%7D%20%5Cleq%20Cap%5C_MW%20%5Ctimes%20Hours_%7Bm%2Cb%7D%2C%20%5Cquad%20%5Cforall%20m%2Cb) |
+| **No Coal (Summer Months)** | Coal fuels (set *mixes₃*) cannot be used in June–August. | ![NoCoal](https://latex.codecogs.com/png.latex?%5Cbg_white%20x_%7Bf%2C%20m%2C%20b%7D%20%3D%200%2C%20%5Cquad%20%5Cforall%20f%20%5Cin%20mixes_3%2C%20m%20%5Cin%20%5C%7BJune%2C%20July%2C%20August%5C%7D%2C%20b%20%5Cin%20Bands)
 ---
 
 ## 🧰 Tech Stack
