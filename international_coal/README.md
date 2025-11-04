@@ -1,8 +1,8 @@
-International Coal Case Study – Optimization Web App
+# International Coal Case Study – Optimization Web App
 
 This project is an interactive web application built as part of the Mathematical Programming and Optimization coursework. It models and visualizes an energy generation planning problem for an international coal company, combining profit optimization with environmental constraints such as SO₂ and CO₂ emissions.
 
-🎯 Objective
+## 🎯 Objective
 
 The optimization model determines the optimal fuel mix (coal, biomass, stockpile, etc.) across multiple months and demand bands to:
 	•	Maximize total profit (revenue – fuel cost – carbon cost – investment)
@@ -11,7 +11,7 @@ The optimization model determines the optimal fuel mix (coal, biomass, stockpile
 
 ⸻
 
-🧩 Key Features
+## 🧩 Key Features
 	•	Gurobi-based LP/MILP model
 Includes decision variables for fuel mix, emission levels, and FGD investment.
 	•	Scenario and sensitivity analysis
@@ -26,7 +26,7 @@ Allows users to adjust parameters, run optimization, and visualize results inter
 	•	Experiment logging
 Stores model inputs and outputs in session state for later analysis.
 
-🧰 Tech Stack
+## 🧰 Tech Stack
 	•	Python 3.11+
 	•	Gurobi 11.0
 	•	Polars / Pandas
@@ -36,7 +36,7 @@ Stores model inputs and outputs in session state for later analysis.
 
 ⸻
 
-🚀 How to Run Locally
+## 🚀 How to Run Locally
 
 # Clone repository
 git clone https://github.com/chandler20708/Optimization_Project.git
@@ -48,7 +48,7 @@ pip install -r requirements.txt
 # Run the Streamlit app
 streamlit run app.py
 
-📂 Project Structure
+## 📂 Project Structure
 international_coal/
 │
 ├── app.py                  # Streamlit web interface
@@ -58,7 +58,7 @@ international_coal/
 ├── results/                # Stored outputs and sensitivity reports
 └── requirements.txt
 
-📊 Example Use Cases
+## 📊 Example Use Cases
 	•	Compare profit vs. emissions trade-offs under different CO₂ price policies
 	•	Evaluate FGD investment viability with varying SO₂ bubbles
 	•	Identify binding constraints via shadow price heatmaps
@@ -66,7 +66,7 @@ international_coal/
 
 ⸻
 
-📖 Acknowledgments
+## 📖 Acknowledgments
 
 Developed by Chia-Te Liu (Chandler) as part of the Alliance Manchester Business School course project on Operational Research & Optimization.
 Supervisors and teammates: Flora, Karan, Minh.
