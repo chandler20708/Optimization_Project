@@ -12,7 +12,8 @@ The optimization model determines the optimal fuel mix (coal, biomass, stockpile
 ⸻
 
 ## 🧩 Key Features
-	•	Gurobi-based LP/MILP model
+
+ • Gurobi-based LP/MILP model
 Includes decision variables for fuel mix, emission levels, and FGD investment.
 	•	Scenario and sensitivity analysis
 Test how changes in electricity price, fuel cost, or emission price affect profit and fuel decisions.
@@ -27,7 +28,7 @@ Allows users to adjust parameters, run optimization, and visualize results inter
 Stores model inputs and outputs in session state for later analysis.
 
 ## 🧰 Tech Stack
-	•	Python 3.11+
+ •	Python 3.11+
 	•	Gurobi 11.0
 	•	Polars / Pandas
 	•	Plotly
@@ -49,7 +50,7 @@ pip install -r requirements.txt
 streamlit run app.py
 
 ## 📂 Project Structure
-international_coal/
+```international_coal/
 │
 ├── app.py                  # Streamlit web interface
 ├── model.py                # Gurobi model setup and optimization logic
@@ -57,9 +58,10 @@ international_coal/
 ├── data/                   # Input datasets (fuel cost, demand, emission factors)
 ├── results/                # Stored outputs and sensitivity reports
 └── requirements.txt
+```
 
 ## 📊 Example Use Cases
-	•	Compare profit vs. emissions trade-offs under different CO₂ price policies
+ •	Compare profit vs. emissions trade-offs under different CO₂ price policies
 	•	Evaluate FGD investment viability with varying SO₂ bubbles
 	•	Identify binding constraints via shadow price heatmaps
 	•	Visualize biomass share evolution over months and periods
