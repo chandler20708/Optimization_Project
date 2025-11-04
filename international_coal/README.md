@@ -42,21 +42,11 @@ The optimization model determines the **optimal fuel mix** (coal, biomass, stock
 | **Constraints** | Energy balance, capacity, biomass ≤ 10%, SO₂ bubble, FGD efficiency, and emission limits |
 
 **Objective function:**
+max Z = Σ_m Σ_b [(price[m,b] - 0.65)*energy[m,b] + ROC*energy[Biomass,m,b]
+          - Σ_f fuel_cost[f]*x[f,m,b]
+          - CO2_price*exchange_rate*0.8*energy[m,b]
+          - SO2_reduced[m,b]*SO2_price] - FGD_cost
 
-$$
-\begin{aligned}
-\max Z
-&= \sum_{m \in \text{Months}} \sum_{b \in \text{Bands}} 
-\Bigg[
-(\text{price}_{m,b} - 0.65)\,\text{energy}_{m,b}
-+ \text{ROC}\,\text{energy}_{\text{Biomass}, m, b} \\
-&\quad - \sum_{f \in \text{Fuels}}\text{fuel\_cost}_f\,x_{f,m,b}
-- \text{CO2\_price}\,\text{exchange\_rate}\,0.8\,\text{energy}_{m,b} \\
-&\quad - \text{SO2\_reduced}_{m,b}\,\text{SO2\_price}
-\Bigg]
-- \text{FGD\_cost}
-\end{aligned}
-$$
 ---
 
 ## 🧰 Tech Stack
