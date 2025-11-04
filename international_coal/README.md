@@ -38,9 +38,25 @@ The optimization model determines the **optimal fuel mix** (coal, biomass, stock
 | Category | Description |
 |-----------|--------------|
 | **Decision Variables** | `x[fuel, month, band]`: tons burned per fuel/month/band; binary FGD investment variable |
-| **Objective** | $$\begin{aligned} \max Z &= \sum_{m \in \text{Months}} \sum_{b \in \text{Bands}} \Bigg[(\text{price}_{m,b} - 0.65) \cdot \text{energy}_{m,b} + \text{ROC} \cdot \text{energy}_{\text{Biomass}, m, b} \\ &\quad - \sum_{f \in \text{Fuels}} \text{fuel\_cost}_f \cdot x_{f,m,b} - \text{CO2\_price} \cdot \text{exchange\_rate} \cdot 0.8 \cdot \text{energy}_{m,b} \\ &\quad - \text{SO2\_reduced}_{m,b} \cdot \text{SO2\_price} \Bigg] - \text{FGD\_cost} \end{aligned} $$ |
+| **Objective** | See mathematical form below |
 | **Constraints** | Energy balance, capacity, biomass ≤ 10%, SO₂ bubble, FGD efficiency, and emission limits |
 
+**Objective function:**
+
+$$
+\begin{aligned}
+\max Z
+&= \sum_{m \in \text{Months}} \sum_{b \in \text{Bands}} 
+\Bigg[
+(\text{price}_{m,b} - 0.65)\,\text{energy}_{m,b}
++ \text{ROC}\,\text{energy}_{\text{Biomass}, m, b} \\
+&\quad - \sum_{f \in \text{Fuels}}\text{fuel\_cost}_f\,x_{f,m,b}
+- \text{CO2\_price}\,\text{exchange\_rate}\,0.8\,\text{energy}_{m,b} \\
+&\quad - \text{SO2\_reduced}_{m,b}\,\text{SO2\_price}
+\Bigg]
+- \text{FGD\_cost}
+\end{aligned}
+$$
 ---
 
 ## 🧰 Tech Stack
