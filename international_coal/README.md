@@ -38,35 +38,7 @@ The optimization model determines the **optimal fuel mix** (coal, biomass, stock
 | Category | Description |
 |-----------|--------------|
 | **Decision Variables** | `x[fuel, month, band]`: tons burned per fuel/month/band; binary FGD investment variable |
-| **Objective** | \[
-\begin{aligned}
-\max \; Z 
-&= \sum_{m \in \text{Months}} \sum_{b \in \text{Bands}} 
-\Bigg[
-(\text{price}_{m,b} - 0.65) \cdot \text{energy}_{m,b}
-+ \text{ROC} \cdot \text{energy}_{\text{Biomass}, m, b} \\
-&\quad - \sum_{f \in \text{Fuels}} \text{fuel\_cost}_f \cdot x_{f,m,b}
-- \text{CO2\_price} \cdot \text{exchange\_rate} \cdot 0.8 \cdot \text{energy}_{m,b} \\
-&\quad - \text{SO2\_reduced}_{m,b} \cdot \text{SO2\_price}
-\Bigg]
-- \text{FGD\_cost}
-\end{aligned}
-\]
-
-where:
-
-| Symbol | Description |
-|:--------|:------------|
-| \( x_{f,m,b} \) | Tons of fuel \( f \) burned in month \( m \), band \( b \) |
-| \( \text{energy}_{m,b} \) | Energy generated in month \( m \), band \( b \) |
-| \( \text{energy}_{\text{Biomass},m,b} \) | Energy generated from biomass |
-| \( \text{ROC} \) | Renewable Obligation Certificate (incentive per MWh) |
-| \( \text{fuel\_cost}_f \) | Unit cost of fuel \( f \) (£/ton) |
-| \( \text{CO2\_price} \) | CO₂ emission price (€ / tCO₂) |
-| \( \text{exchange\_rate} \) | EUR→GBP exchange rate |
-| \( \text{SO2\_price} \) | SO₂ trading price (£ / tSO₂ reduced) |
-| \( \text{SO2\_reduced}_{m,b} \) | SO₂ removed by FGD system |
-| \( \text{FGD\_cost} \) | One-time investment cost for installing FGD |
+| **Objective** | \[\begin{aligned}\max \; Z &= \sum_{m \in \text{Months}} \sum_{b \in \text{Bands}} \Bigg[(\text{price}_{m,b} - 0.65) \cdot \text{energy}_{m,b}+ \text{ROC} \cdot \text{energy}_{\text{Biomass}, m, b} \\&\quad - \sum_{f \in \text{Fuels}} \text{fuel\_cost}_f \cdot x_{f,m,b}- \text{CO2\_price} \cdot \text{exchange\_rate} \cdot 0.8 \cdot \text{energy}_{m,b} \\&\quad - \text{SO2\_reduced}_{m,b} \cdot \text{SO2\_price}\Bigg]- \text{FGD\_cost}\end{aligned}\]
 | **Constraints** | Energy balance, capacity, biomass ≤ 10%, SO₂ bubble, FGD efficiency, and emission limits |
 
 ---
