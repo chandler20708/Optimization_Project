@@ -1,11 +1,11 @@
-# 🌍 International Coal Case Study – Optimization Web App
+# International Coal Case Study – Scenario Testing Web App
 
 This project is an **interactive optimization web application** built as part of the *Mathematical Programming and Optimization* coursework at Alliance Manchester Business School.  
 It models and visualizes an **energy generation planning problem** for an international coal company, combining **profit maximization** with **environmental constraints** such as SO₂ and CO₂ emissions.
 
 ---
 
-## 🎯 Objective
+## Objective
 
 The optimization model determines the **optimal fuel mix** (coal, biomass, stockpile, etc.) across multiple months and demand bands to:
 
@@ -15,7 +15,7 @@ The optimization model determines the **optimal fuel mix** (coal, biomass, stock
 
 ---
 
-## 🧩 Key Features
+## Key Features
 
 - **Gurobi-based LP/MILP model**  
   Includes decision variables for fuel mix, emission levels, and FGD investment.
@@ -33,7 +33,7 @@ The optimization model determines the **optimal fuel mix** (coal, biomass, stock
 
 ---
 
-## 🧮 Model Highlights
+## Model Highlights
 
 | Category | Description |
 |-----------|--------------|
@@ -46,7 +46,7 @@ The optimization model determines the **optimal fuel mix** (coal, biomass, stock
 | **No Coal (Summer Months)** | ![NoCoal](https://latex.codecogs.com/png.latex?%5Cbg_white%20x_%7Bf%2C%20m%2C%20b%7D%20%3D%200%2C%20%5Cquad%20%5Cforall%20f%20%5Cin%20mixes_3%2C%20m%20%5Cin%20%5C%7BJune%2C%20July%2C%20August%5C%7D%2C%20b%20%5Cin%20Bands)
 ---
 
-## 🧰 Tech Stack
+## Tech Stack
 
 - **Python 3.11+**
 - **Gurobi 11.0**
@@ -57,7 +57,7 @@ The optimization model determines the **optimal fuel mix** (coal, biomass, stock
 
 ---
 
-## 🚀 How to Run Locally
+## How to Run Locally
 
 ```bash
 # Clone repository
@@ -69,8 +69,9 @@ pip install -r requirements.txt
 
 # Run the Streamlit app
 streamlit run app.py
+```
 
-## 📊 Example Use Cases
+## Example Use Cases
 - Compare profit vs. emissions trade-offs under different CO₂ price policies
 - Evaluate FGD investment viability with varying SO₂ bubbles
 - Identify binding constraints via shadow price heatmaps
@@ -78,7 +79,12 @@ streamlit run app.py
 
 ⸻
 
-## 📖 Acknowledgments
+## Acknowledgments
+Developed by Chia-Te Liu (Chandler) as part of the Alliance Manchester Business School course project on Operational Research & Optimization.
+Supervisors and teammates: Flora, Karan, Minh.
+Optimization solver powered by Gurobi Optimizer.
+
+LinkedIn → [Chandler Liu]([url](https://www.linkedin.com/in/chia-te-liu/))
 
 Developed by Chia-Te Liu (Chandler) as part of the Alliance Manchester Business School course project on Operational Research & Optimization.
 Supervisors and teammates: Flora, Karan, Minh.
