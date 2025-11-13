@@ -250,7 +250,7 @@ def dashboard():
         .agg(
           pl.sum("Final Value").alias("total_tons"),
           pl.mean("RC").alias("avg_RC"),
-          pl.count().alias("n_vars")
+          pl.len().alias("n_vars")
         )
         .sort("total_tons", descending=True)
         .collect()
@@ -273,7 +273,7 @@ def dashboard():
         .agg(
           pl.mean("Pi (Dual Value)").alias("avg_pi"),
           pl.max("Pi (Dual Value)").alias("max_pi"),
-          pl.count().alias("count"),
+          pl.len().alias("count"),
           ((pl.col("constraint_status")==pl.lit("binding_resource")).cast(pl.Int32)).sum().alias("n_binding"),
           pl.mean("Slack").alias("avg_slack"),
           pl.col("Constraint").filter(pl.col("Pi (Dual Value)")>0).alias("active_members")
