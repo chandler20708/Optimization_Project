@@ -40,7 +40,7 @@ def summary() -> None:
 
   st.markdown("### Mathematical Model")
   st.write("Key pieces of the optimisation model, now at your fingertips.")
-  with st.expander("Show equations", expanded=False):
+  with st.expander("Show equations", expanded=True):
     st.latex(
       r"""
       \max Z = \sum_{m,b} \Big[(p_{m,b} - 0.65)E_{m,b} + 45E_{m,b}^{\text{bio}} - \sum_f P_f x_{f,m,b} - 15 \times 0.86 \times 0.8 \, E_{m,b}\Big]
