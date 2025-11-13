@@ -18,7 +18,7 @@ def run_model(
   fgd_cost=0.0,           # £/year fixed cost added once to objective
   so2_bubble_limit=0.3*30_000,
   so2_price=0.0,        # £/t SO2; None means no direct SO2 cost
-  exchange_rate=0.86,
+  exchange_rate=0.87,
   biomass_limit=0.1,
   summary=False,
 ):

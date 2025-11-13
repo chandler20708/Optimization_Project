@@ -10,7 +10,7 @@ def summary() -> None:
   st.title("International Coal: Case Overview")
   st.markdown("### Fuel-mix optimisation for a 1,000 MW UK coal plant across the June–October planning window.")
 
-  kpi_col1, kpi_col2, kpi_col3 = st.columns([1,1,1])
+  kpi_col1, kpi_col2, kpi_col3 = st.columns([1,2,1])
   kpi_col1.metric("Plant Capacity", "1,000 MW")
   kpi_col2.metric("Planning Horizon", "5 months · 20 periods")
   kpi_col3.metric("Objective", "Maximise net profit")
