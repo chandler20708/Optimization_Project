@@ -36,7 +36,7 @@ def dashboard():
 
   with side_control:
     st.title("International Coal Model Dashboard")
-    summary = st.toggle("Summary Sensitivity Analysis", value=False, key='summary')
+    # summary = st.toggle("Summary Sensitivity Analysis", value=False, key='summary')
     with st.expander("Optional Parameters Change"):
       edited_price = st.data_editor(
         gp.tupledict({
@@ -86,7 +86,7 @@ def dashboard():
       so2_bubble_limit=so2_bubble_limit,
       fgd_cost=fgd_cost,
       biomass_limit=biomass_limit,
-      summary=summary,
+      # summary=summary,
     )
     change_log = {
       "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -125,7 +125,7 @@ def dashboard():
         # **{f: sum(model.getVarByName(x[f,m,b]) for m in months for b in bands) for f in fuels},
       ),
       **{"_".join(key): value for key, value in edited_price.items()},
-      "summary": summary,
+      # "summary": summary,
     }
     st.session_state.experiments['change_log'].append(change_log)
     st.session_state.experiments['sens_var'].append(
