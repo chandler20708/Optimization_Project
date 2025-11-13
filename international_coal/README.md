@@ -37,16 +37,18 @@ The optimization model determines the **optimal fuel mix** (coal, biomass, stock
 
 | Category | Description |
 |-----------|--------------|
-| **Decision Variables** | `x[fuel, month, band]`: tons burned per fuel/month/band; binary FGD investment variable |
-| **Objective** | ![Objective Function](https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Cmax%20Z%20%3D%20%5Csum_%7Bm%20%5Cin%20Months%7D%20%5Csum_%7Bb%20%5Cin%20Bands%7D%20%5CBigg%5B%28price_%7Bm%2Cb%7D-0.65%29%5Ccdot%20energy_%7Bm%2Cb%7D%2BROC%5Ccdot%20energy_%7BBiomass%2Cm%2Cb%7D-%5Csum_%7Bf%20%5Cin%20Fuels%7Dfuel%5C_cost_f%5Ccdot%20x_%7Bf%2Cm%2Cb%7D-CO2%5C_price%5Ccdot%20exchange%5C_rate%5Ccdot0.8%5Ccdot%20energy_%7Bm%2Cb%7D-SO2%5C_reduced_%7Bm%2Cb%7D%5Ccdot%20SO2%5C_price%5CBigg%5D-FGD%5C_cost) |
-| **Stockpile Inventory** | ![Stockpile](https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Csum_%7Bm%2Cb%7D%20x_%7BStockpile%2C%20m%2C%20b%7D%20%5Cleq%20600%2C000) |
-| **Biomass Limit** | ![Biomass](https://latex.codecogs.com/png.latex?%5Cbg_white%20energy_%7BBiomass%2C%20m%2C%20b%7D%20%5Cleq%20%5Ctext%7Bbiomass%5C_limit%7D%20%5Ctimes%20energy_%7Bm%2C%20b%7D%2C%20%5Cquad%20%5Cforall%20m%2Cb) |
-| **Sulphur Bubble Limit** | ![SO2](https://latex.codecogs.com/png.latex?%5Cbg_white%20%5Csum_%7Bm%2Cb%7D%20SO2%5C_reduced_%7Bm%2Cb%7D%20%5Cleq%20SO2%5C_bubble%5C_limit) |
-| **Capacity Limit** | ![Capacity](https://latex.codecogs.com/png.latex?%5Cbg_white%20energy_%7Bm%2C%20b%7D%20%5Cleq%20Cap%5C_MW%20%5Ctimes%20Hours_%7Bm%2Cb%7D%2C%20%5Cquad%20%5Cforall%20m%2Cb) |
-| **No Coal (Summer Months)** | ![NoCoal](https://latex.codecogs.com/png.latex?%5Cbg_white%20x_%7Bf%2C%20m%2C%20b%7D%20%3D%200%2C%20%5Cquad%20%5Cforall%20f%20%5Cin%20mixes_3%2C%20m%20%5Cin%20%5C%7BJune%2C%20July%2C%20August%5C%7D%2C%20b%20%5Cin%20Bands)
+| **Decision Variables** | $x_{f, m, b}$: tons burned per fuel/month/band |
+| **Objective** | $$\max Z = \sum_{m.b} \left[\left(p_{m,b} - 0.65 \right) * E_{m,b} + 45 * E_{m,b}^{bio} - \sum_f P_f * x_{f,m,b} - 15 * 0.86 * 0.8 * E_{m,b}\right]$$ |
+| **Energy Generated** | $$E_{m,b} = \frac{\eta}{3.6} \sum_f \left( CV_f \, x_{f,m,b} \right)$$ |
+| **Stockpile Inventory** | $$\sum_m \sum_b x_{\text{Stockpile},m,b} \le 600{,}000$$ |
+| **Biomass Limit** | $$E_{m,b}^{bio} \leq 0.1 * E_{m,b}$$ |
+| **Sulphur Emission** | $$S_{m,b} = \sum_f \left( x_{f,m,b} \, SO2_f \right)$$ |
+| **Sulphur Bubble Limit** | $$\sum_m \sum_b S_{m,b} \leq 0.3 \times 30{,}000$$ |
+| **Capacity Limit** | $$E_{m,b} \le 1000 \times H_{m,b}$$ |
+| **No Coal (Summer Months)** | $$x_{\text{Colombian},m,b} = 0$$; $$x_{\text{Russian},m,b} = 0$$; $$x_{\text{Scottish},m,b} = 0$$ |
 ---
 
-## Tech Stack
+## Requirements
 
 - **Python 3.11+**
 - **Gurobi 11.0**
@@ -81,13 +83,7 @@ streamlit run app.py
 
 ## Acknowledgments
 Developed by Chia-Te Liu (Chandler) as part of the Alliance Manchester Business School course project on Operational Research & Optimization.
-Supervisors and teammates: Flora, Karan, Minh.
+Teammates: Flora, Karan, Minh, Prajna, Ansh.
 Optimization solver powered by Gurobi Optimizer.
 
-LinkedIn → [Chandler Liu]([url](https://www.linkedin.com/in/chia-te-liu/))
-
-Developed by Chia-Te Liu (Chandler) as part of the Alliance Manchester Business School course project on Operational Research & Optimization.
-Supervisors and teammates: Flora, Karan, Minh.
-Optimization solver powered by Gurobi Optimizer.
-
-LinkedIn → linkedin.com/in/chia-te-liu
+LinkedIn → [Chandler Liu](https://www.linkedin.com/in/chia-te-liu/)
