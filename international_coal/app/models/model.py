@@ -4,24 +4,24 @@ import polars as pl
 import streamlit as st
 
 def run_model(
-  roc=45.,
-  fuel_cost={"Stockpile":42.56, "Columbian":43.93, "Russian":43.80, "Scottish":42.00, "Biomass":73.77},
-  price=gp.tupledict({
-    ("June","WD_peak"):36.00, ("June","WD_offpeak"):27.00, ("June","WE_peak"):33.50, ("June","WE_offpeak"):26.20,
-    ("July","WD_peak"):36.35, ("July","WD_offpeak"):27.00, ("July","WE_peak"):34.30, ("July","WE_offpeak"):26.30,
-    ("August","WD_peak"):37.65, ("August","WD_offpeak"):28.20, ("August","WE_peak"):35.65, ("August","WE_offpeak"):27.50,
-    ("September","WD_peak"):38.35, ("September","WD_offpeak"):28.50, ("September","WE_peak"):35.80, ("September","WE_offpeak"):27.65,
-    ("October","WD_peak"):43.70, ("October","WD_offpeak"):31.70, ("October","WE_peak"):38.70, ("October","WE_offpeak"):30.10,
-  }),
-  co2_price=15.0,          # £/ton CO2
-  so2_reduced_eff=0.0,            # e.g., 0.0 (no FGD), 0.7, 0.8, 0.9
-  fgd_cost=0.0,           # £/year fixed cost added once to objective
-  so2_bubble_limit=0.3*30_000,
-  so2_price=0.0,        # £/t SO2; None means no direct SO2 cost
-  exchange_rate=0.87,
-  biomass_limit=0.1,
-  summary=False,
-):
+    roc=45.,
+    fuel_cost={"Stockpile":42.56, "Columbian":43.93, "Russian":43.80, "Scottish":42.00, "Biomass":73.77},
+    price=gp.tupledict({
+      ("June","WD_peak"):36.00, ("June","WD_offpeak"):27.00, ("June","WE_peak"):33.50, ("June","WE_offpeak"):26.20,
+      ("July","WD_peak"):36.35, ("July","WD_offpeak"):27.00, ("July","WE_peak"):34.30, ("July","WE_offpeak"):26.30,
+      ("August","WD_peak"):37.65, ("August","WD_offpeak"):28.20, ("August","WE_peak"):35.65, ("August","WE_offpeak"):27.50,
+      ("September","WD_peak"):38.35, ("September","WD_offpeak"):28.50, ("September","WE_peak"):35.80, ("September","WE_offpeak"):27.65,
+      ("October","WD_peak"):43.70, ("October","WD_offpeak"):31.70, ("October","WE_peak"):38.70, ("October","WE_offpeak"):30.10,
+    }),
+    co2_price=15.0,          # £/ton CO2
+    so2_reduced_eff=0.0,            # e.g., 0.0 (no FGD), 0.7, 0.8, 0.9
+    fgd_cost=0.0,           # £/year fixed cost added once to objective
+    so2_bubble_limit=0.3*30_000,
+    so2_price=0.0,        # £/t SO2; None means no direct SO2 cost
+    exchange_rate=0.87,
+    biomass_limit=0.1,
+    summary=False,
+  ):
   if so2_price:
     so2_bubble_limit = float('inf')
   if not fgd_cost or not so2_reduced_eff:
