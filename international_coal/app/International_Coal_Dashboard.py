@@ -61,8 +61,8 @@ def dashboard():
         key='edited_fuel_cost'
       )
       roc = st.number_input("ROC (£/MWh)", min_value=0., max_value=200., value=45., step=0.001, format="%0.3f", key='roc')
+      decimals = st.slider("sensitivity to change", min_value=0.001, max_value=10., step=0.001)
 
-    decimals = st.slider("sensitivity to change", min_value=0.001, max_value=10., step=0.001)
     co2_price = st.slider("CO2 Price (€/tonne)", min_value=0., max_value=300., value=15., step=decimals, key='co2_price')
     so2_bubble_limit = st.slider("SO2 Bubble Limit (tonnes)", min_value=0, max_value=30_000, value=9_000, step=100, key='so2_bubble_limit')
     so2_price = st.slider("SO2 Price (£/tonne)", min_value=0., max_value=300., value=0., step=decimals, key='so2_price')
