@@ -61,9 +61,11 @@ def dashboard():
         key='edited_fuel_cost'
       )
       roc = st.number_input("ROC (£/MWh)", min_value=0., max_value=200., value=45., step=0.001, format="%0.3f", key='roc')
-    co2_price = st.slider("CO2 Price (€/tonne)", min_value=0., max_value=300., value=15., step=0.5, key='co2_price')
+
+    decimals = st.slider("sensitivity to change", min_value=0.001, max_value=10)
+    co2_price = st.slider("CO2 Price (€/tonne)", min_value=0., max_value=300., value=15., step=decimals, key='co2_price')
     so2_bubble_limit = st.slider("SO2 Bubble Limit (tonnes)", min_value=0, max_value=30_000, value=9_000, step=100, key='so2_bubble_limit')
-    so2_price = st.slider("SO2 Price (£/tonne)", min_value=0, max_value=300, value=0, step=5, key='so2_price')
+    so2_price = st.slider("SO2 Price (£/tonne)", min_value=0, max_value=300, value=0, step=decimals, key='so2_price')
     biomass_limit=st.slider("Biomass Limit (%)", min_value=0., max_value=1., value=.1, step=.1, key='biomass_limit')
     if so2_price:
       st.warning("Setting a direct SO2 price will disable the SO2 bubble limit constraint.")
