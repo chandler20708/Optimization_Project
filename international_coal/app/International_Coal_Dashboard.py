@@ -302,6 +302,10 @@ def dashboard():
     
 
 if __name__ == "__main__":
+  with open("./international_coal/app/models/gtm_head.html") as f:
+    html_string = f.read()
+    html(html_string)
+  
   st.set_page_config(layout="wide")
   dashboard()
   st.markdown("---")
@@ -317,5 +321,8 @@ if __name__ == "__main__":
   )
 
   with open("./international_coal/app/plerdy.html") as f:
+    html_string = f.read()
+    html(html_string)
+  with open("./international_coal/app/models/gtm_tail.html") as f:
     html_string = f.read()
     html(html_string)
