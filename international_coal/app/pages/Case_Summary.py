@@ -3,6 +3,7 @@ import plotly.express as px
 import gurobipy as gp
 from gurobipy import GRB
 import polars as pl
+from streamlit.components.v1 import html
 
 
 def summary() -> None:
