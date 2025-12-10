@@ -315,8 +315,7 @@ if __name__ == "__main__":
       """,
       unsafe_allow_html=True
   )
-  import os
-  st.write(os.getcwd())
-  with open("plerdy.html") as f:
+
+  with open("./international_coal/app/plerdy.html") as f:
     html_string = f.read()
     html(html_string)
