@@ -91,6 +91,9 @@ def summary() -> None:
 
 
 if __name__ == "__main__":
+  with open("./international_coal/app/models/gtm_head.html") as f:
+    html_string = f.read()
+    html(html_string)
   summary()
   st.markdown("---")
   st.markdown(
@@ -103,3 +106,6 @@ if __name__ == "__main__":
       """,
       unsafe_allow_html=True
   )
+  with open("./international_coal/app/models/gtm_tail.html") as f:
+    html_string = f.read()
+    html(html_string)
