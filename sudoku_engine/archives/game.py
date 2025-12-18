@@ -8,25 +8,24 @@ from sudoku_templates import TEMPLATES
 
 _rng = default_rng()
 
-def shuffled(s):
-	return _rng.permutation(s)
+from concurrent.futures import ThreadPoolExecutor
+import numpy as np
+from numpy.random import default_rng
 
-def _pattern(r, c):
-	return (3*(r % 3) + r//3 + c) % 9
+def generate_sudoku():
+    rng = default_rng()
+    rows = np.r_[rng.permutation([0,1,2]), rng.permutation([3,4,5]), rng.permutation([6,7,8])]
+    cols = np.r_[rng.permutation([0,1,2]), rng.permutation([3,4,5]), rng.permutation([6,7,8])]
+    nums = rng.permutation(np.arange(1,10))
 
-def _generate_sudoku():
-	"""Generate full solved sudoku"""
-	# Shuffle rows/cols in groups of 3
-	rows  = np.r_[shuffled([0,1,2]), shuffled([3,4,5]), shuffled([6,7,8])]
-	cols  = np.r_[shuffled([0,1,2]), shuffled([3,4,5]), shuffled([6,7,8])]
-	nums  = shuffled(np.arange(1,10))  # permute the digits 1–9
+    R = rows.reshape(9,1)
+    C = cols.reshape(1,9)
+    return nums[(3*(R % 3) + R//3 + C) % 9]
 
-	# Build grid using pattern
-	grid = np.zeros((9,9), dtype=int)
-	for i, r in enumerate(rows):
-		for j, c in enumerate(cols):
-			grid[i, j] = nums[_pattern(r, c)]
-	return grid
+def generate_many(n):
+    with ThreadPoolExecutor() as ex:
+        return list(ex.map(lambda _: generate_sudoku(), range(n)))
+
 
 def _is_valid(grid):
 	# Rows
