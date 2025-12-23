@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install -r ./app/requirements.txt
+          pip install -r ./international_coal/app/requirements.txt
 
       - name: Run Selenium script
-        run: python3 wakeup.py
+        run: python3 ./international_coal/wakeup.py
