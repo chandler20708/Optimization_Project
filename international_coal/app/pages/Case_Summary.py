@@ -101,7 +101,8 @@ if __name__ == "__main__":
       """
       <div style='text-align: center; font-size: 0.9em; color: gray;'>
           © 2025 <b>Chia-Te Liu</b>. All rights reserved.  
-          Made with ❤️ using Streamlit.  
+          Author of this app. Made with Streamlit.  
+          Source code is maintained on GitHub and deployed via Streamlit Community Cloud.  
           <a href='https://www.linkedin.com/in/chia-te-liu/' target='_blank'>LinkedIn</a>
       </div>
       """,
